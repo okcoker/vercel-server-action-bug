@@ -34,13 +34,12 @@ export default function Home() {
 
       const result = await uploadFile({
         file: new Uint8Array(imageBytes),
-      }).catch((err) => {
-        // Throw a custom error here
-        console.log(err);
-        throw new Error(err.message);
       });
+
       setError(null);
-      setSuccessMessage(result.message);
+      // result should always be an object, but with next v14, the function
+      // hosted on vercel resolves to undefined
+      setSuccessMessage(`${result ? JSON.stringify(result) : typeof result}`);
       if (inputRef.current) {
         inputRef.current.value = "";
       }
