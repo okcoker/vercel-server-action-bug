@@ -31,6 +31,7 @@ export default function Home() {
         file: new Uint8Array(imageBytes),
       }).catch((err) => {
         // Throw a custom error here
+        console.log(err);
         throw new Error(err.message);
       });
       setError(null);
