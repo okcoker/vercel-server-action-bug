@@ -29,6 +29,9 @@ export default function Home() {
 
       const { message } = await uploadFile({
         file: new Uint8Array(imageBytes),
+      }).catch((err) => {
+        // Throw a custom error here
+        throw new Error(err.message);
       });
       setError(null);
       setSuccessMessage(message);
